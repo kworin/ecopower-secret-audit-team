@@ -1,0 +1,36 @@
+title = "EcoPower Grid - Custom Gitleaks Configuration"
+
+[[rules]]
+id = "ecopower-industrial-control-token"
+description = "Detects EcoPower industrial control tokens"
+regex = '''ECOPOWER_CTRL_[A-Za-z0-9_-]{20,}'''
+keywords = [
+    "ECOPOWER_CTRL_"
+]
+
+[[rules]]
+id = "ecopower-monitoring-db-password"
+description = "Detects monitoring database and SCADA system passwords"
+regex = '''(?i)(monitoring_db_password|scada_db_password)\s*[:=]\s*["']?[A-Za-z0-9@#$%&*!_-]{8,}'''
+keywords = [
+    "monitoring_db_password",
+    "scada_db_password"
+]
+
+[[rules]]
+id = "ecopower-telemetry-api-key"
+description = "Detects API keys used by EcoPower telemetry services"
+regex = '''ECOPOWER_API_[A-Za-z0-9]{24,}'''
+keywords = [
+    "ECOPOWER_API_"
+]
+
+[[allowlists]]
+description = "Excludes test files and documentation"
+paths = [
+    '''README\.md''',
+    '''docs/.*''',
+    '''tests/.*''',
+    '''.*test.*'''
+]
+
